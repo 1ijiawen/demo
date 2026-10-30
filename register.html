@@ -20,33 +20,58 @@
     <main>
 
         <section>
-            <label for="school">学校：</label>
-            <input type="text" id="school" name="school" placeholder="请输入学校">
-
-            <label for="college">学院：</label>
-            <input type="text" id="college" name="college" placeholder="请输入学院">
-
-            <label for="class">班级：</label>
-            <input type="text" id="class" name="class" placeholder="请输入班级"><br>
-        </section>
-
-        <section>
             <form>
 
                 <p>
                     <label for="username">用户名：</label>
-                    <input type="text" id="username" name="username" placeholder="请输入用户名">
+                    <input type="text" id="username" placeholder="请输入用户名">
                 </p>
 
                 <p>
                     <label for="email">电子邮箱：</label>
-                    <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                    <input type="email" id="email" placeholder="请输入邮箱">
                 </p>
 
                 <p>
                     <label for="password">密码：</label>
-                    <input type="password" id="password" name="password" placeholder="请输入测试密码">
+                    <input type="password" id="password" placeholder="请输入测试密码">
                 </p>
+
+                <p>
+                    <label for="age">年龄：</label>
+                    <input type="number" id="age" min="18" max="100">
+                </p>
+
+                <p>
+                    <label for="birthday">出生日期：</label>
+                    <input type="date" id="birthday">
+                </p>
+
+                <fieldset>
+                    <legend>你的 HTML 学习水平：</legend>
+
+                    <input type="radio" id="beginner" name="level" value="beginner" checked>
+                    <label for="beginner">初学者</label>
+
+                    <input type="radio" id="intermediate" name="level" value="intermediate">
+                    <label for="intermediate">有一定基础</label>
+
+                    <input type="radio" id="advanced" name="level" value="advanced">
+                    <label for="advanced">比较熟练</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>你感兴趣的技术：</legend>
+
+                    <input type="checkbox" id="interest-html" name="interests" value="html">
+                    <label for="interest-html">HTML</label>
+
+                    <input type="checkbox" id="interest-css" name="interests" value="css">
+                    <label for="interest-css">CSS</label>
+
+                    <input type="checkbox" id="interest-js" name="interests" value="javascript">
+                    <label for="interest-js">JavaScript</label>
+                </fieldset>
 
             </form>
         </section>
