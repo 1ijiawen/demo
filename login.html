@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录练习 - 我的个人网站</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>用户登录练习</h1>
+        <p>欢迎来到我的 HTML 登录页面。</p>
+    </header>
+
+    <nav>
+        <a href="index.html">返回首页</a>
+    </nav>
+
+    <main>
+        <section>
+            <h2>登录信息</h2>
+
+            <form id="login-form">
+
+                <p>
+                    <label for="email">电子邮箱：</label>
+                    <input type="email" id="email" name="email" required>
+                </p>
+
+                <p>
+                    <label for="password">密码：</label>
+                    <input type="password" id="password" name="password" required>
+                </p>
+
+                <button type="submit">登录</button>
+                <button type="reset">重置</button>
+
+            </form>
+
+            <p>
+                还没有账号？
+                <a href="register.html">前往注册页面</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 我的 HTML 学习网站</p>
+    </footer>
+
+    <script>
+        document.getElementById("login-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                alert("这是登录界面演示，没有进行身份验证。");
+            });
+    </script>
+
+</body>
+
+</html>
