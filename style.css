@@ -37,13 +37,15 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
     justify-content: center;
     align-items: center;
-}
 
-nav li {
-    margin: 4px 12px;
+    gap: 20px;
 }
 
 nav a[aria-current="page"] {
