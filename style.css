@@ -1,5 +1,6 @@
 /* 整个网页 */
 body {
+    margin: 0;
     background-color: #f3f6fb;
     color: #334155;
     font-family: Arial, "Microsoft YaHei", sans-serif;
@@ -108,13 +109,24 @@ footer {
 }
 
 .project-card {
-    max-width: 600px;
-    margin: 20px auto;
+    flex: 1 1 280px;
+    min-width: 0;
+
     background-color: #ffffff;
     border: 1px solid #bfdbfe;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+}
+
+
+.projects-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    align-items: stretch;
+    gap: 20px;
 }
 
 main .project-card .project-image {
@@ -166,4 +178,21 @@ main .project-card .project-image {
 .project-link:focus-visible {
     outline: 3px solid #f59e0b;
     outline-offset: 3px;
+}
+
+/* 导航链接的可点击区域 */
+
+nav a {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+nav a:hover {
+    background-color: #eff6ff;
+}
+
+nav a:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 2px;
 }
