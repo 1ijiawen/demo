@@ -108,8 +108,13 @@ footer {
     box-sizing: border-box;
 }
 
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 .project-card {
-    flex: 1 1 280px;
     min-width: 0;
 
     background-color: #ffffff;
@@ -117,16 +122,6 @@ footer {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
-}
-
-
-.projects-grid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    align-items: stretch;
-    gap: 20px;
 }
 
 main .project-card .project-image {
