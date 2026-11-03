@@ -52,12 +52,36 @@
             </p>
         </section>
 
-        <section>
-            <h2>我的网页作品</h2>
-            <p>这是我制作的第一个 HTML 个人网站。</p>
-            <a href="about.html">
-                <img src="images/project.jpg" alt="查看我的个人介绍与网页作品" width="300">
-            </a>
+        <section aria-labelledby="projects-heading">
+            <h2 id="projects-heading">我的网页作品</h2>
+
+            <article class="project-card">
+                <img class="project-image" src="images/project.jpg" alt="我的 HTML 个人网站作品截图" width="300">
+
+                <div class="project-content">
+                    <h3>我的第一个 HTML 个人网站</h3>
+
+                    <p>
+                        这是我通过七天 HTML 课程完成的
+                        多页面个人网站。
+                    </p>
+
+                    <p>
+                        网站包含个人介绍、学习记录、
+                        作品展示以及表单练习。
+                    </p>
+
+                    <p class="project-skills">
+                        <span>HTML5</span>
+                        <span>语义化</span>
+                        <span>多页面</span>
+                    </p>
+
+                    <a class="project-link" href="about.html">
+                        查看项目详情
+                    </a>
+                </div>
+            </article>
         </section>
     </main>
 
