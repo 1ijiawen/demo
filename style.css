@@ -1,0 +1,60 @@
+/* Day 8：CSS 颜色、字体与文字样式 */
+
+/* 1. 整个网页 */
+body {
+    background-color: #f3f6fb;
+    color: #334155;
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* 2. 网站顶部 */
+header {
+    background-color: #dbeafe;
+    text-align: center;
+}
+
+/* 3. 网站主标题 */
+h1 {
+    color: #1d4ed8;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* 4. 网站副标题 */
+header p {
+    color: #475569;
+    font-size: 16px;
+}
+
+/* 5. 二级标题 */
+h2 {
+    color: #1e40af;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* 6. 普通段落 */
+main p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* 7. 导航与普通链接 */
+a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+/* 8. 当前导航页面 */
+nav a[aria-current="page"] {
+    font-weight: 700;
+}
+
+/* 9. 页脚 */
+footer {
+    color: #64748b;
+    font-size: 14px;
+    text-align: center;
+}
