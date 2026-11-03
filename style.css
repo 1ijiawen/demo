@@ -234,4 +234,17 @@ nav a:focus-visible {
     .project-card-featured {
         grid-column: 1 / -1;
     }
+
+    .project-content {
+        padding: 16px;
+    }
+
+    .project-content h3 {
+        font-size: 20px;
+    }
+
+    .project-skills span {
+        padding: 4px 8px;
+        margin: 3px 3px 3px 0;
+    }
 }
