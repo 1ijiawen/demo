@@ -1,6 +1,4 @@
-/* Day 8：CSS 颜色、字体与文字样式 */
-
-/* 1. 整个网页 */
+/* 整个网页 */
 body {
     background-color: #f3f6fb;
     color: #334155;
@@ -9,50 +7,81 @@ body {
     line-height: 1.7;
 }
 
-/* 2. 网站顶部 */
+/* 网站顶部 */
 header {
     background-color: #dbeafe;
     text-align: center;
+    padding: 32px;
 }
 
-/* 3. 网站主标题 */
+/* 网站主标题 */
 h1 {
     color: #1d4ed8;
     font-size: 32px;
     font-weight: 700;
 }
 
-/* 4. 网站副标题 */
+/* 网站副标题 */
 header p {
     color: #475569;
     font-size: 16px;
 }
 
-/* 5. 二级标题 */
+/* 网站导航 */
+nav {
+    background-color: #ffffff;
+    padding: 12px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav a[aria-current="page"] {
+    font-weight: 700;
+}
+
+/* 主内容区域 */
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 16px;
+}
+
+main section {
+    background-color: #ffffff;
+    padding: 24px;
+    margin-bottom: 20px;
+    border-radius: 18px;
+}
+
+main p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* 二级标题 */
 h2 {
     color: #1e40af;
     font-size: 24px;
     font-weight: 600;
 }
 
-/* 6. 普通段落 */
-main p {
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-/* 7. 导航与普通链接 */
+/* 导航与普通链接 */
 a {
     color: #2563eb;
     text-decoration: underline;
 }
 
-/* 8. 当前导航页面 */
-nav a[aria-current="page"] {
-    font-weight: 700;
-}
-
-/* 9. 页脚 */
+/* 页脚 */
 footer {
     color: #64748b;
     font-size: 14px;
