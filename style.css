@@ -196,6 +196,11 @@ nav a:focus-visible {
 }
 
 @media (max-width: 600px) {
+    main {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
     .projects-grid {
         grid-template-columns: minmax(0, 1fr);
     }
