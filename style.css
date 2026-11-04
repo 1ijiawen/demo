@@ -120,6 +120,15 @@ footer {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.project-card:hover {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    transform: translateY(-4px);
 }
 
 main .project-card .project-image {
@@ -173,6 +182,19 @@ main .project-card .project-image {
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.project-link:hover {
+    background-color: #1d4ed8;
+}
+
+.project-link:active {
+    background-color: #1e40af;
+    transform: translateY(2px);
 }
 
 .project-link:focus-visible {
@@ -184,6 +206,8 @@ nav a {
     display: inline-block;
     padding: 8px 12px;
     border-radius: 8px;
+
+    transition: background-color 0.2s ease;
 }
 
 nav a:hover {
@@ -282,5 +306,19 @@ main button:focus-visible {
 
     footer {
         padding: 16px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .project-link,
+    .project-card,
+    nav a {
+        transition: none;
+    }
+
+    .project-card:hover,
+    .project-link:active {
+        transform: none;
     }
 }
