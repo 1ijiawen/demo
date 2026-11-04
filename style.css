@@ -3,22 +3,30 @@
    ========================================================= */
 
 :root {
+    /* 品牌与交互 */
     --brand: #2563eb;
-    /* 主色：按钮、链接、聚焦边框 */
     --brand-dark: #1d4ed8;
-    /* 主色深：hover、标题 */
     --brand-darker: #1e40af;
-    /* 主色更深：active、h2/h3 */
     --brand-border: #bfdbfe;
-    /* 边框浅蓝 */
     --brand-border-hover: #93c5fd;
-    /* 边框 hover 稍深 */
-    --bg-soft: #eff6ff;
-    /* 浅蓝背景（hover / 标签底） */
-    --bg-header: #dbeafe;
-    /* 页头背景 / 按钮 active 背景 */
     --focus-ring: #f59e0b;
-    /* 键盘聚焦轮廓（橙色，醒目） */
+
+    /* 背景 */
+    --bg-soft: #eff6ff;
+    --bg-header: #dbeafe;
+    --bg-page: #f3f6fb;
+    --bg-card: #ffffff;
+    --bg-footer: #e2e8f0;
+
+    /* 文字 */
+    --text-primary: #334155;
+    --text-secondary: #475569;
+
+    /* 表单设计变量 */
+    --input-border: #cbd5e1;
+    --button-secondary-bg: #f1f5f9;
+    --radius-control: 8px;
+
 }
 
 
@@ -42,9 +50,9 @@
 body {
     margin: 0;
     /* 去除浏览器默认外边距 */
-    background-color: #f3f6fb;
+    background-color: var(--bg-page);
     /* 页面浅蓝灰背景 */
-    color: #334155;
+    color: var(--text-primary);
     /* 默认文字颜色（深灰蓝） */
     font-family: Arial, "Microsoft YaHei", sans-serif;
     font-size: 16px;
@@ -94,13 +102,13 @@ header {
 }
 
 header p {
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 16px;
 }
 
 /* —— 导航 —— */
 nav {
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     padding: 16px 12px;
 }
 
@@ -154,7 +162,7 @@ main {
 
 /* 每个内容区块：白色卡片 + 圆角 + 边框 + 阴影 */
 main section {
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     padding: 28px 32px;
     margin-bottom: 24px;
     border-radius: 12px;
@@ -169,7 +177,7 @@ main p {
 
 /* —— 页脚 —— */
 footer {
-    background-color: #e2e8f0;
+    background-color: var(--bg-footer);
     padding: 20px 16px;
     font-size: 14px;
     text-align: center;
@@ -199,7 +207,7 @@ footer {
     flex-direction: column;
     min-width: 0;
     /* 防止 grid/flex 子项溢出 */
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     border: 1px solid var(--brand-border);
     border-radius: 16px;
     overflow: hidden;
@@ -248,7 +256,7 @@ main .project-card .project-image {
 }
 
 .project-content p {
-    color: #475569;
+    color: var(--text-secondary);
     line-height: 1.8;
 }
 
@@ -282,6 +290,11 @@ main .project-card .project-image {
         transform 0.15s ease;
 }
 
+.project-skills {
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
 .project-link:hover {
     background-color: var(--brand-dark);
 }
@@ -302,6 +315,26 @@ main .project-card .project-image {
 /* =========================================================
    5. 表单与按钮
    ========================================================= */
+
+/* 文本类表单控件：统一外观 */
+main input[type="text"],
+main input[type="email"],
+main input[type="password"],
+main select,
+main textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-control);
+
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font: inherit;
+}
 
 /* 输入框聚焦时边框变蓝（视觉反馈） */
 main input[type="text"]:focus,
@@ -327,6 +360,17 @@ main button:focus-visible {
     border-radius: 8px;
 }
 
+/* 注册表单的文本字段标签 */
+
+#register-form>p>label[for="username"],
+#register-form>p>label[for="email"],
+#register-form>p>label[for="password"],
+#register-form>p>label[for="confirm"] {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
 /* 提交 / 重置按钮：统一外观，44px 最小高度满足触控尺寸建议 */
 main button[type="submit"],
 main button[type="reset"] {
@@ -343,17 +387,48 @@ main button[type="reset"] {
         border-color 0.2s ease;
 }
 
-main button[type="submit"]:hover,
+/* 主要操作：注册 / 登录 / 提交 */
+main button[type="submit"] {
+    background-color: var(--brand);
+    border-color: var(--brand);
+    color: #ffffff;
+}
+
+main button[type="submit"]:hover {
+    background-color: var(--brand-dark);
+    border-color: var(--brand-dark);
+}
+
+main button[type="submit"]:active {
+    background-color: var(--brand-darker);
+    border-color: var(--brand-darker);
+}
+
+/* 次要操作：重置 */
+main button[type="reset"] {
+    background-color: var(--button-secondary-bg);
+    border-color: var(--input-border);
+    color: var(--text-secondary);
+}
+
 main button[type="reset"]:hover {
     background-color: var(--bg-soft);
     border-color: var(--brand-border-hover);
 }
 
-main button[type="submit"]:active,
 main button[type="reset"]:active {
     background-color: var(--bg-header);
 }
 
+/* 年龄与日期字段 */
+main input[type="number"],
+main input[type="date"] {
+    max-width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-control);
+    font: inherit;
+}
 
 /* =========================================================
    6. 响应式：窄屏（≤ 600px）
