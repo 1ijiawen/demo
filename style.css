@@ -119,6 +119,7 @@ footer {
     border: 1px solid #bfdbfe;
     border-radius: 16px;
     overflow: hidden;
+
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
 
     transition:
@@ -126,9 +127,15 @@ footer {
         transform 0.2s ease;
 }
 
-.project-card:hover {
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
-    transform: translateY(-4px);
+@media (hover: hover) {
+    .project-card:hover {
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+        transform: translateY(-4px);
+    }
+}
+
+.project-card:focus-within {
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
 }
 
 main .project-card .project-image {
@@ -198,6 +205,7 @@ main .project-card .project-image {
 }
 
 .project-link:focus-visible {
+    background-color: #1d4ed8;
     outline: 3px solid #f59e0b;
     outline-offset: 3px;
 }
