@@ -1,41 +1,61 @@
 /* =========================================================
    0. 设计变量（主题色 / 背景色）
+   ---------------------------------------------------------
+   把所有颜色集中定义成 CSS 变量（自定义属性），好处是：
+   - 改主题色只需改这里一处，全站生效
+   - 变量名有语义（如 --brand），比直接写 #2563eb 更易读
+   使用方式：color: var(--brand);
    ========================================================= */
 
 :root {
-    /* 品牌与交互 */
+    /* ---- 品牌与交互色 ---- */
     --brand: #2563eb;
+    /* 主品牌色，用于链接、主按钮 */
     --brand-dark: #1d4ed8;
+    /* 品牌色加深，用于 hover 态 */
     --brand-darker: #1e40af;
+    /* 更深，用于 active 态和深色标题 */
     --brand-border: #bfdbfe;
+    /* 浅蓝边框，用于卡片、图片描边 */
     --brand-border-hover: #93c5fd;
+    /* 边框 hover 时的加深色 */
     --focus-ring: #f59e0b;
+    /* 键盘焦点环颜色（橙色，与蓝色形成对比） */
 
-    /* 背景 */
+    /* ---- 背景色 ---- */
     --bg-soft: #eff6ff;
+    /* 最浅的蓝，用于 hover、标签底色 */
     --bg-header: #dbeafe;
+    /* 页头背景 */
     --bg-page: #f3f6fb;
+    /* 整页背景 */
     --bg-card: #ffffff;
+    /* 卡片/白色容器背景 */
     --bg-footer: #e2e8f0;
+    /* 页脚背景 */
 
-    /* 文字 */
+    /* ---- 文字色 ---- */
     --text-primary: #334155;
+    /* 正文主色 */
     --text-secondary: #475569;
+    /* 次要文字（说明、副标题） */
 
-    /* 表单设计变量 */
+    /* ---- 表单设计变量 ---- */
     --input-border: #cbd5e1;
+    /* 输入框默认边框 */
     --button-secondary-bg: #f1f5f9;
-    --radius-control: 8px;
-
+    /* 次要按钮（reset）背景 */
 }
 
 
 /* =========================================================
    1. 全局重置 / 盒模型
+   ---------------------------------------------------------
+   让所有元素的宽高都包含 padding 和 border（border-box），
+   这样设置 width: 100% 时不会因为 padding 撑破容器，
+   是响应式布局的基础。
    ========================================================= */
 
-/* 统一盒模型：width/height 包含 padding 和 border，布局计算更直观。
-   * 不匹配伪元素，所以需单独列出 ::before / ::after。 */
 *,
 *::before,
 *::after {
@@ -49,42 +69,39 @@
 
 body {
     margin: 0;
-    /* 去除浏览器默认外边距 */
+    /* 去掉浏览器默认外边距 */
     background-color: var(--bg-page);
-    /* 页面浅蓝灰背景 */
     color: var(--text-primary);
-    /* 默认文字颜色（深灰蓝） */
     font-family: Arial, "Microsoft YaHei", sans-serif;
     font-size: 16px;
     line-height: 1.7;
-    /* 正文行高，提升可读性 */
+    /* 行高 1.7，正文更易读 */
 }
 
 h1 {
     color: var(--brand-dark);
-    /* 主标题深蓝 */
     font-size: 32px;
     font-weight: 700;
 }
 
 h2 {
     color: var(--brand-darker);
-    /* 次级标题蓝色 */
     font-size: 24px;
     font-weight: 600;
 }
 
 a {
     color: var(--brand);
-    /* 链接蓝色 */
     text-decoration: underline;
-    /* 链接默认带下划线，便于识别 */
+    /* 保留下划线，链接可辨识 */
 }
 
-/* 正文中的图片：自适应容器宽度，避免溢出 */
+/* 只约束 main 内的图片：自适应宽度 + 圆角描边 */
 main img {
     max-width: 100%;
+    /* 图片不超出容器宽度 */
     height: auto;
+    /* 保持宽高比，避免变形 */
     border: 2px solid var(--brand-border);
     border-radius: 8px;
 }
@@ -94,7 +111,6 @@ main img {
    3. 页面骨架：header / nav / main / footer
    ========================================================= */
 
-/* —— 页头 —— */
 header {
     background-color: var(--bg-header);
     text-align: center;
@@ -106,16 +122,15 @@ header p {
     font-size: 16px;
 }
 
-/* —— 导航 —— */
 nav {
     background-color: var(--bg-card);
     padding: 16px 12px;
 }
 
-/* 导航列表：横向排列、自动换行、居中、带间距 */
+/* 导航列表：用 flex 实现横向居中、自动换行 */
 nav ul {
     list-style: none;
-    /* 去掉列表圆点 */
+    /* 去掉列表小圆点 */
     padding: 0;
     margin: 0;
 
@@ -124,13 +139,16 @@ nav ul {
     flex-wrap: wrap;
     /* 窄屏时自动换行 */
     justify-content: center;
+    /* 水平居中 */
     align-items: center;
+    /* 垂直居中 */
     gap: 20px;
+    /* 项间距（比 margin 更简洁） */
 }
 
-/* 导航链接：内边距 + 圆角，hover 有背景反馈 */
 nav a {
     display: inline-block;
+    /* 让 padding 生效并保持行内排列 */
     padding: 8px 12px;
     border-radius: 8px;
     transition: background-color 0.2s ease;
@@ -140,27 +158,28 @@ nav a:hover {
     background-color: var(--bg-soft);
 }
 
-/* 键盘聚焦时显示醒目轮廓（仅键盘操作触发，鼠标点击不触发） */
+/* :focus-visible 只在键盘导航时显示焦点环，鼠标点击不显示 */
 nav a:focus-visible {
     outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
+    /* 焦点环与元素留 2px 间隙 */
 }
 
-/* 当前页导航项加粗 */
+/* 当前页链接加粗，aria-current 由 HTML 提供语义 */
 nav a[aria-current="page"] {
     font-weight: 700;
 }
 
-/* —— 主体内容区 —— */
 main {
     max-width: 900px;
-    /* 内容最大宽度 */
+    /* 限制阅读宽度，避免长行 */
     margin: 32px auto;
-    /* 上下留白，水平居中 */
+    /* 上下留白 + 水平居中 */
     padding: 0 20px;
+    /* 小屏时两侧留白 */
 }
 
-/* 每个内容区块：白色卡片 + 圆角 + 边框 + 阴影 */
+/* 每个 section 做成"卡片"样式 */
 main section {
     background-color: var(--bg-card);
     padding: 28px 32px;
@@ -175,7 +194,6 @@ main p {
     line-height: 1.8;
 }
 
-/* —— 页脚 —— */
 footer {
     background-color: var(--bg-footer);
     padding: 20px 16px;
@@ -188,7 +206,9 @@ footer {
    4. 项目卡片组件（Grid 布局 + 卡片样式 + 悬浮态）
    ========================================================= */
 
-/* 项目网格：两列，最小宽度自适应，行/列间距分开控制 */
+/* 两列等宽网格
+   minmax(0, 1fr) 而非 1fr 的原因：
+   防止长内容（如长单词/图片）把列撑破，是 Grid 常用技巧 */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -196,42 +216,44 @@ footer {
     column-gap: 20px;
 }
 
-/* 精选项目卡：横跨两列（1 到 3 列线） */
+/* 精选卡片横跨两列（1 到 3 表示占据整行） */
 .project-card-featured {
     grid-column: 1 / 3;
 }
 
-/* 单张项目卡：纵向排列，卡片式外观 */
+/* 卡片本体：纵向 flex 布局，方便把链接推到底部 */
 .project-card {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    /* 防止 grid/flex 子项溢出 */
+    /* 配合 Grid，防止内容溢出 */
     background-color: var(--bg-card);
     border: 1px solid var(--brand-border);
     border-radius: 16px;
     overflow: hidden;
-    /* 图片圆角裁切 */
+    /* 让图片圆角被卡片裁切 */
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
     transition:
         box-shadow 0.2s ease,
         transform 0.2s ease;
 }
 
-/* 仅在支持 hover 的设备上做悬浮上移动画，避免触屏误触 */
+/* 仅在支持 hover 的设备上应用悬浮效果（触屏设备无 hover） */
 @media (hover: hover) {
     .project-card:hover {
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
         transform: translateY(-4px);
+        /* 上浮 4px 的微动效 */
     }
 }
 
-/* 卡片内任意子元素获得焦点时，高亮整张卡片 */
+/* 卡片内有元素获得焦点时（如键盘 Tab 到链接），高亮整张卡片 */
 .project-card:focus-within {
     box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
 }
 
-/* 卡片顶部图片：铺满宽度、去掉内部圆角和边框（由父级裁剪） */
+/* 卡片内图片：铺满宽度，并去掉 main img 的默认边框/圆角
+   （用 main .project-card 提高优先级覆盖第 2 节的 main img） */
 main .project-card .project-image {
     display: block;
     width: 100%;
@@ -240,7 +262,7 @@ main .project-card .project-image {
     border-radius: 0;
 }
 
-/* 卡片文字内容区：纵向弹性，撑满剩余高度 */
+/* 卡片文字区：flex: 1 撑满剩余高度，配合链接的 margin-top: auto 实现底部对齐 */
 .project-content {
     display: flex;
     flex-direction: column;
@@ -260,25 +282,25 @@ main .project-card .project-image {
     line-height: 1.8;
 }
 
-/* 技能标签：浅蓝底的小圆角块 */
+/* 技能标签：行内块 + 浅蓝底 + 圆角，形成"胶囊"外观 */
 .project-skills span {
     display: inline-block;
     background-color: var(--bg-soft);
     color: var(--brand-dark);
     padding: 5px 10px;
     margin: 4px 4px 4px 0;
+    /* 只留左/上/右间距，行末不挤 */
     border: 1px solid var(--brand-border);
     border-radius: 6px;
     font-size: 13px;
 }
 
-/* 项目链接按钮：蓝色主按钮，靠底对齐（margin-top: auto） */
 .project-link {
     display: inline-block;
     align-self: flex-start;
-    /* 宽度贴合文字，不拉伸 */
+    /* 不拉伸，宽度随内容 */
     margin-top: auto;
-    /* 把按钮推到底部 */
+    /* 关键：把链接推到卡片底部 */
     background-color: var(--brand);
     color: #ffffff;
     padding: 10px 18px;
@@ -299,10 +321,10 @@ main .project-card .project-image {
     background-color: var(--brand-dark);
 }
 
+/* :active 模拟按下效果：颜色更深 + 下沉 2px */
 .project-link:active {
     background-color: var(--brand-darker);
     transform: translateY(2px);
-    /* 按下时轻微下沉 */
 }
 
 .project-link:focus-visible {
@@ -316,7 +338,8 @@ main .project-card .project-image {
    5. 表单与按钮
    ========================================================= */
 
-/* 文本类表单控件：统一外观 */
+/* 统一的输入控件样式
+   注意：width: 100% 配合 border-box，不会撑破父容器 */
 main input[type="text"],
 main input[type="email"],
 main input[type="password"],
@@ -326,17 +349,19 @@ main textarea {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    /* 防止 flex/grid 中被内容撑开 */
 
     padding: 10px 12px;
     border: 1px solid var(--input-border);
-    border-radius: var(--radius-control);
+    border-radius: 8px;
 
     background-color: var(--bg-card);
     color: var(--text-primary);
     font: inherit;
+    /* 继承 body 字体，避免浏览器默认字体 */
 }
 
-/* 输入框聚焦时边框变蓝（视觉反馈） */
+/* 聚焦时边框变品牌色（与下方的 outline 焦点环配合） */
 main input[type="text"]:focus,
 main input[type="email"]:focus,
 main input[type="password"]:focus,
@@ -345,7 +370,8 @@ main textarea:focus {
     border-color: var(--brand);
 }
 
-/* 键盘聚焦轮廓：统一所有可交互控件的 focus 样式 */
+/* 键盘焦点环：统一给所有可交互控件加橙色 outline
+   用 :focus-visible 而非 :focus，避免鼠标点击也出现轮廓 */
 main input:focus-visible,
 main select:focus-visible,
 main textarea:focus-visible,
@@ -354,14 +380,13 @@ main button:focus-visible {
     outline-offset: 2px;
 }
 
-/* 注册表单：某一行的输入框获得焦点时，整行背景高亮 */
+/* 注册表单：某个字段获得焦点时，整行 <p> 高亮浅蓝底，提示当前编辑项 */
 #register-form>p:focus-within {
     background-color: var(--bg-soft);
     border-radius: 8px;
 }
 
-/* 注册表单的文本字段标签 */
-
+/* 注册表单的 label：加粗并与输入框拉开间距 */
 #register-form>p>label[for="username"],
 #register-form>p>label[for="email"],
 #register-form>p>label[for="password"],
@@ -371,23 +396,22 @@ main button:focus-visible {
     font-weight: 600;
 }
 
-/* 提交 / 重置按钮：统一外观，44px 最小高度满足触控尺寸建议 */
+/* 按钮基础样式（submit 和 reset 共用）
+   min-height: 44px 是常见的触控友好尺寸（≈44px 可点击区域） */
 main button[type="submit"],
 main button[type="reset"] {
     border: 1px solid var(--brand-border);
     border-radius: 8px;
     padding: 10px 18px;
     min-height: 44px;
-    /* 触控友好尺寸 */
     font: inherit;
-    /* 继承页面字体 */
     cursor: pointer;
     transition:
         background-color 0.2s ease,
         border-color 0.2s ease;
 }
 
-/* 主要操作：注册 / 登录 / 提交 */
+/* 主按钮（提交）：品牌色实心 */
 main button[type="submit"] {
     background-color: var(--brand);
     border-color: var(--brand);
@@ -404,7 +428,7 @@ main button[type="submit"]:active {
     border-color: var(--brand-darker);
 }
 
-/* 次要操作：重置 */
+/* 次按钮（重置）：浅灰底、次要文字色 */
 main button[type="reset"] {
     background-color: var(--button-secondary-bg);
     border-color: var(--input-border);
@@ -420,23 +444,29 @@ main button[type="reset"]:active {
     background-color: var(--bg-header);
 }
 
-/* 年龄与日期字段 */
+/* number / date 输入框：单独补充 padding 和边框
+   （它们不在上面那组 type 选择器里） */
 main input[type="number"],
 main input[type="date"] {
     max-width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--input-border);
-    border-radius: var(--radius-control);
+    border-radius: 8px;
     font: inherit;
 }
 
+
 /* =========================================================
    6. 响应式：窄屏（≤ 600px）
+   ---------------------------------------------------------
+   这里主要做三件事：
+   1) 收紧间距和内边距，节省小屏空间
+   2) 缩小标题字号，避免换行过多
+   3) 两列网格改为单列
    ========================================================= */
 
 @media (max-width: 600px) {
 
-    /* 页头 / 导航 / 标题：缩小内边距与字号 */
     header {
         padding: 24px 16px;
     }
@@ -445,10 +475,12 @@ main input[type="date"] {
         padding: 12px 8px;
     }
 
+    /* 窄屏下导航项间距变小，允许更紧凑地换行 */
     nav ul {
         gap: 6px 8px;
     }
 
+    /* 触屏上加大点击区域（padding 增大） */
     nav a {
         padding: 10px 8px;
     }
@@ -463,7 +495,6 @@ main input[type="date"] {
         line-height: 1.4;
     }
 
-    /* 主体：收紧边距 */
     main {
         margin: 20px auto;
         padding: 0 12px;
@@ -473,14 +504,15 @@ main input[type="date"] {
         padding: 20px 18px;
     }
 
-    /* 项目网格：改为单列 */
+    /* 两列 → 单列 */
     .projects-grid {
         grid-template-columns: minmax(0, 1fr);
     }
 
+    /* 精选卡片在单列布局下占满整行
+       （1 / -1 表示从第一列到最后一条网格线） */
     .project-card-featured {
         grid-column: 1 / -1;
-        /* 单列时占满整行 */
     }
 
     .project-content {
@@ -496,7 +528,7 @@ main input[type="date"] {
         margin: 3px 3px 3px 0;
     }
 
-    /* 表单控件：全宽、块级，方便手机操作 */
+    /* 小屏下重新声明输入框宽度，确保铺满 */
     main input[type="text"],
     main input[type="email"],
     main input[type="password"],
@@ -517,22 +549,25 @@ main input[type="date"] {
 
 /* =========================================================
    7. 无障碍：尊重"减少动态效果"系统设置
+   ---------------------------------------------------------
+   当用户在操作系统里开启"减少动态效果"时，
+   关闭过渡动画和位移动效，避免引起不适。
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    /* 关闭所有过渡动画 */
     .project-link,
     .project-card,
     nav a,
     main button[type="submit"],
     main button[type="reset"] {
         transition: none;
+        /* 去掉过渡 */
     }
 
-    /* 取消位移类变换 */
     .project-card:hover,
     .project-link:active {
         transform: none;
+        /* 去掉位移 */
     }
 }
